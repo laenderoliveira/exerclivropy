@@ -36,7 +36,7 @@ while x < len(duas_listas):
     y = 0
     while y < len(terceira):
         if duas_listas[x] == terceira[y]:
-            break;
+            break
         y=y+1
     if y == len(terceira):
         terceira.append(duas_listas[x])
