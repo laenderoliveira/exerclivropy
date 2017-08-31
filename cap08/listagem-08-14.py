@@ -4,5 +4,4 @@ def fibonacci(n):
     else:
         return fibonacci(n-1) + fibonacci(n-2)
 
-n = int(input("Digite para achar o N da sequencia de fibonacci: "))
-print(fibonacci(n - 1))
+print(fibonacci(n))
