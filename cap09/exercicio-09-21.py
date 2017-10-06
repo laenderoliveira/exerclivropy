@@ -14,7 +14,7 @@ def pedearquivo():
 
 
 def mostra(nome, telefone):
-    print("Nome: {} Telefone: {}".format(nome, telefone))
+    print(f"Nome: {nome} Telefone: {telefone}")
 
 
 def pesquisa(nome):
@@ -23,6 +23,7 @@ def pesquisa(nome):
         if e[0].lower() == mnome:
             return p
     return None
+
 
 def novo():
     nome = pedenome()
@@ -34,8 +35,9 @@ def apaga():
     nome = pedenome()
     p = pesquisa(nome)
 
-    if p != None:
-        valor = faixa("Tem certeza que quer excluir? (1 - Para confirmar / 0 - para sair): ", 0, 1)
+    if p is not None:
+        m = "Certeza que quer excluir? (1 - Para confirmar / 0 - para sair): "
+        valor = faixa(m, 0, 1)
         if valor == 1:
             del agenda[p]
         else:
@@ -46,14 +48,15 @@ def apaga():
 
 def altera():
     p = pesquisa(pedenome())
-    if p != None:
+    if p is not None:
         print("Encontrado!")
         nome = agenda[p][0]
         telefone = agenda[p][1]
         mostra(nome, telefone)
         nome = pedenome()
         telefone = pedetelefone()
-        valor = faixa("Tem certeza que quer alterar? (1 - Para confirmar / 0 - para sair): ", 0, 1)
+        m = "Certeza que quer alterar? (1 - Para confirmar / 0 - para sair): "
+        valor = faixa(m, 0, 1)
         if valor == 1:
             agenda[p] = [nome, telefone]
         else:
@@ -67,7 +70,7 @@ def lista():
     print("-"*6)
     for n, d in enumerate(agenda):
         nome, telefone = d
-        print(n+1, end=" - ")
+        print(n+1, end=' ')
         mostra(nome, telefone)
     print("-"*6)
 
@@ -76,7 +79,7 @@ def grava():
     nomearquivo = pedearquivo()
     arquivo = open(nomearquivo, "w")
     for nome, telefone in agenda:
-        arquivo.write("{}#{}\n".format(nome, telefone))
+        arquivo.write(f"{nome}#{telefone}\n")
     arquivo.close()
 
 
@@ -91,7 +94,6 @@ def le():
     arquivo.close()
 
 
-
 def faixa(pergunta, i, f):
     while True:
         try:
@@ -99,7 +101,7 @@ def faixa(pergunta, i, f):
             if valor >= i and valor <= f:
                 return valor
         except ValueError:
-            print("Valor inválido, favor digitar valor entre {} e {}".format(i, f))
+            print(f"Valor inválido, favor digitar valor entre {i} e {f}")
 
 
 def ordena():
@@ -119,8 +121,10 @@ def menu():
     6 - Lê
     7 - Ordena por Nome
     """)
-    print("{} contato(s) na agenda.".format(len(agenda)))
+    la = len(agenda)
+    print(f"{la} contato(s) na agenda.")
     return faixa("Escola uma opção: ", 0, 7)
+
 
 while True:
     opcao = menu()
